@@ -22,10 +22,10 @@ a:link, a:visited, a:hover, a:active {
 	text-decoration: none;
 }
 
-/*.lt_main .table td {*/
-	/*text-align: center;*/
-	/*vertical-align: middle;*/
-/*}*/
+.lt_main .table td {
+	text-align: center;
+	vertical-align: middle;
+}
 
 
 
@@ -89,9 +89,7 @@ a:link, a:visited, a:hover, a:active {
 	border: 3px solid transparent;
 }
 
-/*.lt_aside .child a {*/
-	/*padding-left: 50px;*/
-/*}*/
+
 
 .lt_aside .child a{
 	padding-left: 50px;
@@ -121,10 +119,7 @@ a:link, a:visited, a:hover, a:active {
 	margin-bottom:20px;
 }
 
-/*.lt_header a {*/
-	/*color: #fff;*/
-	/*font-size: 16px;*/
-/*}*/
+
 
 .lt_header a {
 	color: #fff;
