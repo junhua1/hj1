@@ -32,3 +32,54 @@ $(document).ajaxStop(function () {
 });
 
 //点击分类管理，显示或者隐藏二级分类
+$('.child').prev().on("click",function () {
+    // console.log(this);
+    $(this).next().slideToggle();
+});
+
+
+//点击icon_menu,隐藏或者显示侧边栏
+$(".icon_menu").on("click",function () {
+    $(".lt_aside").toggleClass("now");
+
+    //右边的头部蓝也要慢慢变长
+    $(".lt_main").toggleClass("now");
+});
+
+
+//共用的退出功能
+
+$(".icon_logout").on("click",function () {
+    $("#logoutModal").modal("show");
+});
+
+$(".btn_logout").on("click",function () {
+    //发送一个ajax请求，告诉服务器我要退出了，服务器会清空你的session
+    $.ajax({
+        type:"get",
+        url:"/employee/employeeLogout",
+        success:function (data) {
+            if(data.success){
+                window.location.href = "login.html";
+            }
+        }
+    })
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

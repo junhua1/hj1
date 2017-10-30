@@ -132,8 +132,8 @@ a:link, a:visited, a:hover, a:active {
 }
 
 
-/*.lt_content .pic_left,*/
-/*.lt_content .pic_right {*/
-	/*width: 45%;*/
-	/*height: 400px;*/
-/*}*/
+.lt_content .pic_left,
+.lt_content .pic_right {
+	width: 45%;
+	height: 400px;
+}
