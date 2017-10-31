@@ -80,7 +80,7 @@
 </div>
 
 <!--模态框-->
-<div class="modal fade" tabindex="-1" id="logoutModal">
+<div class="modal fade" tabindex="-1" id="optionModal">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -88,11 +88,11 @@
 				<h4 class="modal-title">温馨提示</h4>
 			</div>
 			<div class="modal-body">
-				<p class="text-danger"><span class="glyphicon glyphicon-info-sign"></span> 您确定要退出后台管理系统吗？</p>
+				<p class="text-danger"><span class="glyphicon glyphicon-info-sign"></span>  您确定要 禁用 itcast 这个用户吗？</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn_logout btn btn-primary">确定</button>
+				<button type="button" class="btn_primary btn btn-primary">确定</button>
 			</div>
 		</div>
 	</div>
@@ -106,7 +106,7 @@
 		<td>{{v.username}}</td>
 		<td>{{v.mobile}}</td>
 		<td>{{v.isDelete === 1 ? "正常":"禁用"}}</td>
-		<td>
+		<td data-id={{v.id}} data-is-delete={{v.isDelete}}>
 			{{if v.isDelete ===1}}
 			<button class="btn btn-sm btn-danger">禁用</button>
 			{{/if}}

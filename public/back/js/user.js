@@ -38,4 +38,35 @@ $(function () {
     }
     render();
 
+    $("tbody").on("click",".btn",function () {
+        // console.log(1);
+        var id = $(this).parent().data("id");
+        var isDelete = $(this).parent().data("is-delete");
+        console.log(id);
+        console.log(isDelete);
+        isDelete = isDelete === 1 ? 0 : 1;
+        //显示模态框
+        $("#optionModal").modal("show");
+
+
+        $('.btn-primary').off().on('click',function () {
+            $.ajax({
+                type:'post',
+                url:'/user/updateUser',
+                data:{
+                    id:id,
+                    isDelete:isDelete
+                },
+                dataType:'json',
+                success:function (data) {
+                    if(data.success){
+                        $("#optionModal").modal('hide');
+                        render();
+                    }
+                }
+            })
+
+        })
+    });
+
 });
