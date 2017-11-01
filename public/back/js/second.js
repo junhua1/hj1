@@ -77,7 +77,7 @@ $(function () {
         //让categoryId的校验通过
         $form.data("bootstrapValidator").updateStatus("categoryId", "VALID");
 
-    })
+    });
 
 
     //初始文件上传

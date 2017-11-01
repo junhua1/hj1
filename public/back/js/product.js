@@ -72,16 +72,30 @@ $(function () {
     });
 
 
+
+
     //初始化产品图片上传
+    var newArr = [];
+    var $form = $('#form');
     $("#fileupload").fileupload({
         dataType:"json",
-        data:function (e,data) {
+        done:function (e,data) {
             //上传成功，将图片添加到img_box中
             $(".img_box").append('<img src="'+data.result.picAddr+'" width="100" height="100">');
+            newArr.push(data.result);
+            console.log(newArr.length);
+            if(newArr.length === 3){
+                $form.data("bootstrapValidator").updateStatus("productLogo","VALID");
+            }else{
+                $form.data("bootstrapValidator").updateStatus("productLogo","INVALID");
+            }
         }
-    })
 
-    var $form = $("#form");
+    });
+
+
+
+
     $form.bootstrapValidator({
         //默认不校验的配置
         excluded:[],
@@ -150,8 +164,47 @@ $(function () {
                     }
                 }
             },
+            productLogo:{
+                validators:{
+                    notEmpty:{
+                        message:"请输入三张图片"
+                    }
+                }
+            }
         }
     });
+
+
+    $form.on("success.form.bv",function (e) {
+        e.preventDefault();
+
+        var param = $form.serialize();
+        //还需要拼接三张图片的地址
+
+        param += "&picName1="+newArr[0].picName+"&picAddr1="+newArr[0].picAddr;
+        param += "&picName2="+newArr[1].picName+"&picAddr2="+newArr[1].picAddr;
+        param += "&picName3="+newArr[2].picName+"&picAddr3="+newArr[2].picAddr;
+        $.ajax({
+            type:"post",
+            url:"/product/addProduct",
+            data:param,
+            success:function (data) {
+                console.log(data);
+                if(data.success){
+                    $("#addModal").modal("hide");
+                    currentPage = 1;
+                    render();
+
+                    $form[0].reset();
+                    $form.data("bootstrapValidator").resetForm();
+
+                    $(".dropdown-text").text("请选择二级分类");
+                    $(".img_box img").remove();
+                    newArr = [];
+                }
+            }
+        })
+    })
 
     
 })
