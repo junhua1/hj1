@@ -23,8 +23,8 @@ img{
 	min-width: 320px;
 	margin: 0 auto;
 	background-color: pink;
-	/*padding-top: 45px;*/
-	/*padding-bottom: 55px;*/
+	padding-top: 45px;
+	padding-bottom: 55px;
 }
 
 .lt_content {
