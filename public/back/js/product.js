@@ -81,6 +81,7 @@ $(function () {
         dataType:"json",
         done:function (e,data) {
             //上传成功，将图片添加到img_box中
+            console.log(data);
             $(".img_box").append('<img src="'+data.result.picAddr+'" width="100" height="100">');
             newArr.push(data.result);
             console.log(newArr.length);

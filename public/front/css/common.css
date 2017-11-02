@@ -125,4 +125,24 @@ img{
 .lt_product .item p span:last-child {
 	text-decoration: line-through;
 }
+/*搜索相关*/
+.lt_search {
+	padding: 10px;
+	position: relative;
+}
+
+.lt_search input{
+	width: 100%;
+	border: 1px solid #069;
+	font-size: 12px;
+	border-radius: 5px;
+	height: 34px;
+	margin: 0;
+}
+.lt_search button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border-radius:0 5px 5px 0;
+}
 

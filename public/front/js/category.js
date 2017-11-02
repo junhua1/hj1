@@ -37,4 +37,15 @@ $(".lt_category_l ul").on("click","li",function () {
     var id = $(this).data("id");
     $(this).addClass("now").siblings().removeClass("now");
     renderSecond(id);
-})
+});
+
+sc[0] = mui('.mui-scroll-wrapper').scroll({
+    deceleration: 0.0005,
+    indicators:false
+});
+
+sc[1] = mui('.mui-scroll-wrapper').scroll({
+    deceleration: 0.0005,
+    indicators:false
+});
+
