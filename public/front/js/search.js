@@ -31,7 +31,7 @@ function getHistory() {
 
 function render() {
     var arr = getHistory();
-    console.log(arr);
+    // console.log(arr);
     //模版第二个参数：必须是对象，因为在模版中是直接通过对象的属性来获取。
     $(".lt_history").html( template("tpl",{arr:arr}) );
 }
@@ -58,13 +58,29 @@ $(".lt_history").on("click",".icon_empty",function(){
 //5. 重新渲染
 
 $(".lt_history").on("click",".fa-close",function () {
-    console.log(2);
-    var index = $(this).data("index");
-    var arr = getHistory();
-    //数组如何删除某一项  push unshift pop shift  slice(原数组不变)  splice()
-    arr.splice(index,1);
-    localStorage.setItem("leTaoHistory",JSON.stringify(arr));
-    render();
+    // console.log(2);
+    var $this =$(this);
+    var btnArray = ["是", "否"];
+    mui.confirm("你确定要删除这条记录吗","警告", btnArray, function (data) {
+
+        if(data.index == 0){
+            var arr = getHistory();
+            var index = $this.data("index");
+            console.log(index);
+            //数组如何删除某一项  push unshift pop shift  slice(原数组不变)  splice()
+            arr.splice(index, 1);
+
+            //stringify ：字符串化  simple simplify:
+            localStorage.setItem("leTaoHistory", JSON.stringify(arr));
+            console.log(arr);
+            render();
+            mui.toast("操作成功");
+        }else {
+            mui.toast("操作取消");
+        }
+
+    });
+
 })
 
 
@@ -77,10 +93,10 @@ $(".lt_history").on("click",".fa-close",function () {
 $(".search_btn").on("click",function () {
     console.log(1);
     var val = $(".search_text").val().trim();
-    // if(val === ""){
-    //     mui.alert("说话,不然你点个鸡儿")
-    //     return;
-    // }
+    if(val === ""){
+        mui.alert("说话,不然你点个鸡儿");
+        return;
+    }
 
     //把value值存储到缓冲中
     //1. 先从缓存中把数组获取到
@@ -89,6 +105,7 @@ $(".search_btn").on("click",function () {
     //如果数组的长度>=10,删除最后一条，把val存在第一条
     //把val存到第一条
     //获取val在arr中的索引,如果索引是-1，说明没有
+    var index = arr.indexOf(val);
     if(arr.indexOf(val) > -1){
         //说明存在这条记录
         arr.splice(index,1);

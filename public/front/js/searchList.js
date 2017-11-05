@@ -20,7 +20,7 @@ $(function () {
         page: 1,
         pageSize: 10
     };
-
+    
     //需要发送ajax请求，去后端获取数据  page pageSize proName
     function render(data) {
         $.ajax({
